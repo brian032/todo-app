@@ -1,0 +1,36 @@
+body {
+    background-color: #3C4048;
+}
+
+h1 {
+    color: #00ABB3;
+    font-family: 'Montserrat', sans-serif;
+}
+
+th {
+    font-family: 'Montserrat', sans-serif;
+    color: #EAEAEA;
+}
+td {
+    color: #B2B2B2;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.todo-list {
+  margin: auto;
+  width: 50%;
+  margin-top: 300px;
+  margin-bottom: 100px;
+
+}
+
+.todo-table {
+    margin: auto;
+    width: 50%;
+
+}
+
+.add-task {
+    margin-left: 95%;
+}

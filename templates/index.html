@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}To Do List{% endblock %}
+
+{% block content %}
+<div class="container-fluid todo-list mx-auto">
+    <h1>TO DO LIST</h1>
+</div>
+<div class="todo-table">
+    <button type="button" class="btn btn-primary add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add
+    </button>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Status</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Homework</td>
+            <td><a class="btn btn-outline-secondary" href="#">Todo</a></td>
+            <td><a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pencil"></i></a></td>
+            <td><a class="btn btn-outline-danger" href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+        </tr>
+    </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="{{url_for('home')}}" method="post">
+                <label for="taskinput" class="form-label">Task</label>
+                <input type="text" class="form-control" id="taskinput">
+                <input class="btn btn-primary " type="submit" value="Save">
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
