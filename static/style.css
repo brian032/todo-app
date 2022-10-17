@@ -34,3 +34,10 @@ td {
 .add-task {
     margin-left: 95%;
 }
+
+.edit-body {
+    margin: auto;
+    width: 50%;
+    margin-top: 300px;
+    margin-bottom: 100px;
+}

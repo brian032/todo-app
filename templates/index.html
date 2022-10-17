@@ -7,7 +7,7 @@
     <h1>TO DO LIST</h1>
 </div>
 <div class="todo-table">
-    <button type="button" class="btn btn-primary add-task" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary add-task" data-bs-toggle="modal" data-bs-target="#addModal">
         Add
     </button>
     <table class="table">
@@ -21,29 +21,37 @@
         </tr>
         </thead>
         <tbody>
+        {% for task in tasks %}
         <tr>
-            <th scope="row">1</th>
-            <td>Homework</td>
-            <td><a class="btn btn-outline-secondary" href="#">Todo</a></td>
-            <td><a class="btn btn-outline-primary" href="#"><i class="fa-solid fa-pencil"></i></a></td>
-            <td><a class="btn btn-outline-danger" href="#"><i class="fa-solid fa-trash-can"></i></a></td>
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.task }}</td>
+            {% if task.status == 'Todo' %}
+            <td><a class="btn btn-outline-secondary" href="{{ url_for('update_status', id=task.id) }}">Todo</a></td>
+            {% elif task.status == 'In Progress' %}
+            <td><a class="btn btn-outline-warning" href="{{ url_for('update_status', id=task.id) }}">In Progress</a></td>
+            {% elif task.status == 'Completed' %}
+            <td><a class="btn btn-outline-success" href="{{ url_for('update_status', id=task.id) }}">Completed</a></td>
+            {% endif %}
+            <td><a class="btn btn-outline-primary" href="{{ url_for('edit', id=task.id) }}"><i class="fa-solid fa-pencil"></i></a></td>
+            <td><a class="btn btn-outline-danger" href="{{ url_for('delete', id=task.id) }}"><i class="fa-solid fa-trash-can"></i></a></td>
         </tr>
+        {% endfor %}
     </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                <h5 class="modal-title" id="addModalLabel">Add Task</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form action="{{url_for('home')}}" method="post">
-                <label for="taskinput" class="form-label">Task</label>
-                <input type="text" class="form-control" id="taskinput">
-                <input class="btn btn-primary " type="submit" value="Save">
-            </form>
+                <form action="{{url_for('add')}}" method="post">
+                    <label for="taskInput" class="form-label">Task</label>
+                    <input type="text" class="form-control" id="taskInput" name="task">
+                    <input class="btn btn-primary " type="submit" value="Save">
+                </form>
             </div>
         </div>
     </div>
