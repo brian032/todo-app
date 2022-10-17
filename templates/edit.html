@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}To Do List{% endblock %}
+
+{% block content %}
+
+<div class="edit-body">
+    <form action="{{url_for('edit', id=id)}}" method="post">
+        <label for="taskEditInput" class="form-label">Task</label>
+        <input type="text" class="form-control" id="taskEditInput" name="task">
+        <input class="btn btn-primary " type="submit" value="Save">
+    </form>
+</div>
+
+{% endblock %}
